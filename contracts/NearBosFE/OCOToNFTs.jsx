@@ -32,14 +32,14 @@ const [whitelist, setWhitelist] = useState([
     id: 1,
     dataId: 1,
     address: "0x9567D433240681653fb4DD3E05e08D60fe54210d",
-    dateTime: "2024/04/15 12:00:00",
+    dateTime: "2024/04/25 18:00:00",
     active: 1,
   },
   {
     id: 1,
     dataId: 1,
     address: "0x00f02f3a111D452C0DFbF576f09A4003b2F18284",
-    dateTime: "2024/04/25 12:00:00",
+    dateTime: "2024/04/10 9:00:00",
     active: 0,
   },
   //{ id: 3, name: "Item 3", publicData: "Public 3", privateData: "Private 2" },
@@ -851,99 +851,115 @@ return (
             }}
           >
             {data.map((item) => (
-            <div>
-              <div
-                key={item.id}
-                style={{
-                  border: "1px solid black",
-                  borderRadius: "0.45rem",
-                  padding: "5px",
-                }}
-              >
-                <h2>{item.name}</h2>
-                <p>{item.publicData}</p>
-                <p style={{ fontStyle: "italic" }}>{item.privateData}</p>
-
-                <div style={{ padding: "5px" }}>
-                  <input
-                    type="text"
-                    value={text}
-                    placeholder="Whitelist address"
-                    onChange={handleChange}
-                  />
-                </div>
-                <div style={{ padding: "5px" }}>
-                  <input type="date" value={date} onChange={handleDateChange} />
-                  <input type="time" value={time} onChange={handleTimeChange} />
-                </div>
-                <button type="submit" variant="primary">
-                  Whitelist
-                </button>
-              </div>
-              {whitelist && (
-          <div>
-            <h3>Whitelisted Addresses</h3>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                //justifyContent: "left",
-                alignItems: "center",
-                gap: "10px",
-                padding: "5px",
-              }}
-            >
-              {whitelist.map((white) => (
-        <div>
-             {white.id == item.id ? (
-
+              <div>
                 <div
-                  key={white.id}
+                  key={item.id}
                   style={{
                     border: "1px solid black",
                     borderRadius: "0.45rem",
                     padding: "5px",
                   }}
                 >
-                  <h2>{white.name}</h2>
-                  <p>{prettyAddress(white.address)}</p>
-                  <p>{white.dateTime}</p>
-                  {white.active ? (
-                 <button type="submit" variant="primary">
-                    Revoke
+                  <h2>{item.name}</h2>
+                  <p>{item.publicData}</p>
+                  <p style={{ fontStyle: "italic" }}>{item.privateData}</p>
+
+                  <div style={{ padding: "5px" }}>
+                    <input
+                      type="text"
+                      value={text}
+                      placeholder="Whitelist address"
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div style={{ padding: "5px" }}>
+                    <input
+                      type="date"
+                      value={date}
+                      onChange={handleDateChange}
+                    />
+                    <input
+                      type="time"
+                      value={time}
+                      onChange={handleTimeChange}
+                    />
+                  </div>
+                  <button type="submit" variant="primary">
+                    Whitelist
                   </button>
-                  ) : (
-                    <div>Time ended</div>
-                  )
-                  }
                 </div>
-          ) : (
-                <div
-                  key={white.id}
-                  style={{
-                    border: "1px solid white",
-                    borderRadius: "0.45rem",
-                    padding: "5px",
-                  }}
-                >
-                  <h2></h2>
-                  <p>&nbsp;</p>
-                  <p>&nbsp;</p>
-                  
-                    <div>&nbsp;</div>
-                </div>
-          )}
-          </div>
-              ))}
-            </div>
-          </div>
-              
-        )}
-            </div>
+                {whitelist && (
+                  <div>
+                    <h3>Whitelisted Addresses</h3>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        //justifyContent: "left",
+                        alignItems: "center",
+                        gap: "10px",
+                        padding: "5px",
+                      }}
+                    >
+                      {whitelist.map((white) => (
+                        <div>
+                          {white.id == item.id ? (
+                            <div
+                              key={white.id}
+                              style={{
+                                border: "1px solid black",
+                                borderRadius: "0.45rem",
+                                padding: "5px",
+                              }}
+                            >
+                              <h2>{white.name}</h2>
+                              <p>{prettyAddress(white.address)}</p>
+                              <p>{white.dateTime}</p>
+                              {white.active ? (
+                                <button type="submit" variant="primary">
+                                  Revoke
+                                </button>
+                              ) : (
+                                <div>Time ended</div>
+                              )}
+                            </div>
+                          ) : (
+                            <div
+                              key={white.id}
+                              style={{
+                                border: "1px solid white",
+                                borderRadius: "0.45rem",
+                                padding: "5px",
+                              }}
+                            >
+                              <h2></h2>
+                              <p>&nbsp;</p>
+                              <p>&nbsp;</p>
+
+                              {white.active ? (
+                                <button
+                                  style={{
+                                    backgroundColor: "white",
+                                    color: "white",
+                                    border: "white",
+                                  }}
+                                >
+                                  &nbsp;
+                                </button>
+                              ) : (
+                                <div>&nbsp;</div>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             ))}
           </div>
         </div>
-        
       </div>
     </div>
     <Footer>
